@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Portfolio of Sudhakhar Katta, computer vision and edge AI engineer.">
+<title>Sudhakhar Katta Portfolio</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap">
+<style>
+/* Layout: single column, 1080px max. Hero splits text / portrait with a detection-box frame. Featured project gets the stat row and video; the rest is quiet lists. */
+:root {
+  --bg: #f3f5f9;
+  --surface: #ffffff;
+  --ink: #0d1322;
+  --muted: #536078;
+  --line: #d9dfeb;
+  --accent: #2446d4;
+  --accent-soft: #e4e9fb;
+  --on-accent: #ffffff;
+  --font-display: "Space Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0a0e19; --surface: #111728; --ink: #edf0f8; --muted: #98a3bb;
+    --line: #232c43; --accent: #93abff; --accent-soft: #19213a; --on-accent: #0a0e19;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0a0e19; --surface: #111728; --ink: #edf0f8; --muted: #98a3bb;
+  --line: #232c43; --accent: #93abff; --accent-soft: #19213a; --on-accent: #0a0e19;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 20px 56px;
+}
+.wrap { max-width: 1080px; margin: 0 auto; }
+a { color: inherit; }
+a:focus-visible, button:focus-visible, video:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.1; margin: 0; text-wrap: balance; letter-spacing: -0.02em; }
+p { margin: 0; }
+.mono { font-family: var(--font-mono); }
+.label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* top bar */
+.top { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; padding-bottom: 20px; border-bottom: 1px solid var(--line); }
+.top .mark { font-family: var(--font-display); font-weight: 600; font-size: 17px; text-decoration: none; }
+.top nav { display: flex; gap: 22px; font-size: 14px; }
+.top nav a { color: var(--muted); text-decoration: none; }
+.top nav a:hover { color: var(--ink); }
+
+/* hero */
+.hero { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr); gap: 56px; align-items: center; padding-block: 64px 72px; }
+.hero h1 { font-size: clamp(40px, 6.4vw, 72px); font-weight: 700; margin-top: 14px; }
+.hero .role { font-family: var(--font-display); font-size: clamp(20px, 2.6vw, 28px); font-weight: 500; margin-top: 18px; color: var(--accent); letter-spacing: -0.01em; }
+.hero .lede { margin-top: 20px; max-width: 54ch; color: var(--muted); font-size: 17px; }
+.links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  font: 500 14px/1 var(--font-body);
+  padding: 12px 16px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+  border-radius: 6px;
+  text-decoration: none;
+  cursor: pointer;
+}
+.btn:hover { border-color: var(--accent); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+.btn.primary:hover { filter: brightness(1.08); }
+
+.portrait { position: relative; justify-self: end; width: 100%; max-width: 380px; }
+.portrait img { display: block; width: 100%; aspect-ratio: 1066 / 1124; object-fit: cover; border-radius: 4px; }
+.portrait::before, .portrait::after {
+  content: ""; position: absolute; width: 36px; height: 36px; pointer-events: none;
+  border: 3px solid var(--accent);
+}
+.portrait::before { top: -10px; left: -10px; border-right: 0; border-bottom: 0; }
+.portrait::after { bottom: -10px; right: -10px; border-left: 0; border-top: 0; }
+.portrait .tag {
+  position: absolute; top: -10px; left: 30px; transform: translateY(-100%);
+  background: var(--accent); color: var(--on-accent);
+  font: 500 11px/1 var(--font-mono); padding: 5px 8px; border-radius: 3px 3px 0 0;
+}
+
+/* sections */
+section { padding-block: 64px; border-top: 1px solid var(--line); }
+.sec-head { display: flex; flex-direction: column; gap: 10px; margin-bottom: 32px; }
+.sec-head h2 { font-size: clamp(28px, 4vw, 40px); font-weight: 600; max-width: 22ch; }
+
+/* featured */
+.feature { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; align-items: start; }
+.feature .copy { display: flex; flex-direction: column; gap: 16px; color: var(--muted); }
+.feature .copy strong { color: var(--ink); font-weight: 600; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.chip { font: 400 12px/1 var(--font-mono); padding: 7px 10px; border-radius: 4px; background: var(--accent-soft); color: var(--accent); }
+.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: 40px; border: 1px solid var(--line); background: var(--surface); border-radius: 6px; }
+.stat { padding: 20px 20px 18px; border-left: 1px solid var(--line); }
+.stat:first-child { border-left: 0; }
+.stat .num { font-family: var(--font-display); font-weight: 600; font-size: clamp(28px, 3.6vw, 40px); letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+.stat .num small { font-size: 0.5em; font-weight: 500; color: var(--muted); margin-left: 3px; }
+.stat .label { margin-top: 6px; }
+.video { margin: 0; }
+.video video { display: block; width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 6px; border: 1px solid var(--line); }
+.video figcaption { margin-top: 12px; font-size: 14px; color: var(--muted); max-width: 60ch; }
+
+/* experience */
+.xp { display: flex; flex-direction: column; }
+.xp-row { display: grid; grid-template-columns: 190px minmax(0, 1fr); gap: 32px; padding-block: 28px; border-top: 1px solid var(--line); }
+.xp-row:first-child { border-top: 0; padding-top: 0; }
+.xp-when { font: 400 13px/1.6 var(--font-mono); color: var(--muted); }
+.xp-when span { display: block; }
+.xp-body h3 { font-size: 22px; font-weight: 600; }
+.xp-body .org { color: var(--muted); font-size: 15px; margin-top: 4px; }
+.xp-body ul { margin: 14px 0 0; padding-left: 18px; display: flex; flex-direction: column; gap: 8px; }
+.xp-body li { padding-left: 2px; }
+.xp-body li::marker { color: var(--accent); }
+.xp-body .num { font-weight: 600; font-variant-numeric: tabular-nums; }
+
+/* projects */
+.projects { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.project { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 26px; display: flex; flex-direction: column; gap: 12px; }
+.project h3 { font-size: 21px; font-weight: 600; }
+.project p { color: var(--muted); font-size: 15px; }
+.project .chips { margin-top: auto; padding-top: 6px; }
+
+/* skills */
+.skills { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 48px; }
+.skill { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 16px; padding-block: 16px; border-top: 1px solid var(--line); }
+.skill p { color: var(--muted); }
+.edu { margin-top: 40px; display: flex; flex-wrap: wrap; gap: 8px 32px; align-items: baseline; justify-content: space-between; padding: 22px 26px; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; }
+.edu h3 { font-size: 20px; font-weight: 600; }
+.edu p { color: var(--muted); font-size: 15px; }
+
+/* contact */
+.contact { display: flex; flex-direction: column; gap: 24px; align-items: flex-start; }
+.contact h2 { font-size: clamp(32px, 5vw, 56px); font-weight: 700; max-width: 18ch; }
+.contact p { color: var(--muted); max-width: 52ch; font-size: 17px; }
+.email-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.email-row code { font: 500 15px/1 var(--font-mono); padding: 12px 14px; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; user-select: all; overflow-wrap: anywhere; }
+footer { padding-top: 40px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; font-size: 13px; color: var(--muted); }
+
+@media (max-width: 860px) {
+  .hero { grid-template-columns: minmax(0, 1fr); gap: 48px; padding-block: 40px 56px; }
+  .portrait { justify-self: start; max-width: 320px; margin-top: 14px; margin-left: 10px; }
+  .feature { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+  .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .stat:nth-child(3) { border-left: 0; }
+  .stat:nth-child(n+3) { border-top: 1px solid var(--line); }
+  .xp-row { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+  .xp-when span { display: inline; }
+  .xp-when span + span::before { content: " · "; }
+  .projects { grid-template-columns: minmax(0, 1fr); }
+  .skills { grid-template-columns: minmax(0, 1fr); }
+  .skill:nth-child(n+2) { }
+  section { padding-block: 48px; }
+}
+@media (max-width: 480px) {
+  .skill { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+  .project { padding: 20px; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="mark" href="#top">Sudhakhar Katta</a>
+    <nav aria-label="Sections">
+      <a href="#featured">Featured</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <div class="hero">
+      <div>
+        <p class="label">Computer science, UC Davis, class of 2027</p>
+        <h1>Sudhakhar Katta</h1>
+        <p class="role">Computer vision and edge AI engineer</p>
+        <p class="lede">I build vision systems that have to work outside the notebook. This summer I shipped a dual-camera road safety system on an NVIDIA Jetson AGX for a pilot serving 10,000+ drivers. I also run the software behind a logistics company in India.</p>
+        <div class="links">
+          <a class="btn primary" href="#contact">Get in touch</a>
+          <a class="btn" href="https://github.com/Sudhakhar-Katta" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn" href="https://linkedin.com/in/sudhakhar-katta-77a721232" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+      <div class="portrait">
+        <span class="tag">person 0.99</span>
+        <img src="portrait.jpg" alt="Portrait of Sudhakhar Katta in a navy patterned shirt with arms crossed" width="800" height="843">
+      </div>
+    </div>
+
+    <section id="featured">
+      <div class="sec-head">
+        <p class="label">Featured project</p>
+        <h2>Dual-camera road safety on a Jetson AGX</h2>
+      </div>
+      <div class="feature">
+        <div class="copy">
+          <p>At Swiss Condor AI I built an Intelligent Transportation Management System (ITMS) with one camera on the road and one on the driver. It went into a road-safety pilot serving <strong>10,000+ drivers</strong>.</p>
+          <p>I owned the vision pipeline end to end: data validation, training, evaluation, inference and edge deployment. It covers lane detection, traffic recognition, vehicle proximity and driver monitoring.</p>
+          <p>A risk-fusion layer combines the detections into a live safety score, audio alerts and structured JSON event logs that fleet operators can read.</p>
+          <div class="chips">
+            <span class="chip">PyTorch</span><span class="chip">OpenCV</span><span class="chip">ONNX</span><span class="chip">TensorRT</span><span class="chip">Jetson AGX</span>
+          </div>
+        </div>
+        <figure class="video">
+          <video controls preload="metadata" playsinline poster="poster.jpg" aria-describedby="vcap">
+            <source src="demo.mp4" type="video/mp4">
+            Your browser can't play this video.
+          </video>
+          <figcaption id="vcap">System demo on a real drive. The road camera (left) tracks the lane and distance to the lane edge. The driver camera (right) tracks eyes, yawning, gaze and head pose.</figcaption>
+        </figure>
+      </div>
+      <div class="stats" role="list" aria-label="Measured results on embedded hardware">
+        <div class="stat" role="listitem"><div class="num">23<small>FPS</small></div><div class="label">Throughput</div></div>
+        <div class="stat" role="listitem"><div class="num">35<small>ms</small></div><div class="label">Latency</div></div>
+        <div class="stat" role="listitem"><div class="num">97.5<small>%</small></div><div class="label">Precision</div></div>
+        <div class="stat" role="listitem"><div class="num">98<small>%</small></div><div class="label">mAP@50</div></div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="sec-head">
+        <p class="label">Experience</p>
+        <h2>Where I've shipped</h2>
+      </div>
+      <div class="xp">
+        <article class="xp-row">
+          <div class="xp-when"><span>Jun 2026 to Sep 2026</span><span>Hyderabad, India</span></div>
+          <div class="xp-body">
+            <h3>Computer Vision / Edge AI Intern</h3>
+            <p class="org">Swiss Condor AI</p>
+            <ul>
+              <li>Built and deployed the ITMS on NVIDIA Jetson AGX for a pilot serving <span class="num">10,000+</span> drivers.</li>
+              <li>Optimized inference with ONNX and TensorRT to <span class="num">23 FPS</span> and <span class="num">35 ms</span> latency.</li>
+              <li>Shipped an industrial vision system that tracked and counted <span class="num">1,000+</span> pipes at <span class="num">98%</span> accuracy in difficult factory conditions.</li>
+            </ul>
+          </div>
+        </article>
+        <article class="xp-row">
+          <div class="xp-when"><span>Apr 2026 to Present</span><span>Davis, CA</span></div>
+          <div class="xp-body">
+            <h3>Project Manager, Sprint Lead and Developer</h3>
+            <p class="org">AI Collective, Deepfake Detection</p>
+            <ul>
+              <li>Led <span class="num">5</span> engineers through a <span class="num">6-week</span> sprint to build a deepfake video detection tool.</li>
+              <li>Trained CNN models that reached <span class="num">0.885</span> ROC-AUC on FaceForensics++ C23, ahead of handcrafted features alone.</li>
+            </ul>
+          </div>
+        </article>
+        <article class="xp-row">
+          <div class="xp-when"><span>Jun 2025 to Aug 2025</span><span>Rocklin, CA</span></div>
+          <div class="xp-body">
+            <h3>Software Engineering Intern</h3>
+            <p class="org">Amynta Group</p>
+            <ul>
+              <li>Shipped an internal operations platform used by <span class="num">50+</span> project managers across <span class="num">1,000+</span> employees.</li>
+              <li>Improved API performance <span class="num">25%</span> with Redis caching and AWS Elastic Beanstalk, and cut frontend load times <span class="num">60%</span> with S3 and CloudFront.</li>
+              <li>Raised reporting accuracy <span class="num">30%</span> through new time-tracking and cross-team reporting flows.</li>
+            </ul>
+          </div>
+        </article>
+        <article class="xp-row">
+          <div class="xp-when"><span>Apr 2025 to Present</span><span>India</span></div>
+          <div class="xp-body">
+            <h3>Founding Engineer</h3>
+            <p class="org">KSR Logistics</p>
+            <ul>
+              <li>Built the company's operating platform from scratch. It replaced dispatch, fleet, invoicing and payment workflows and now runs daily operations across <span class="num">7</span> trucks and <span class="num">4</span> enterprise clients, with <span class="num">$200K+</span> in recorded revenue.</li>
+              <li>Covers trip scheduling, shipment tracking, expenses, customer records and payment reconciliation.</li>
+              <li>Added analytics dashboards tracking <span class="num">490+ tons</span> of freight for the largest client, with live views of trip revenue, fleet utilization and profitability.</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="sec-head">
+        <p class="label">More projects</p>
+        <h2>Smaller things I built and shipped</h2>
+      </div>
+      <div class="projects">
+        <article class="project">
+          <h3>Deepfake video detector</h3>
+          <p>A 16-frame pipeline that finds faces, scores each frame and returns a 5-level authenticity verdict from visual artifacts, frequency patterns, blinking, motion and pulse-like signals. Trained on FaceForensics++ C23.</p>
+          <div class="chips"><span class="chip">Python</span><span class="chip">OpenCV</span><span class="chip">FastAPI</span><span class="chip">CNN</span></div>
+        </article>
+        <article class="project">
+          <h3>Industrial pipe counter</h3>
+          <p>A tracking and counting system for a factory line. It counted 1,000+ pipes at 98% accuracy despite glare, clutter and overlapping stock.</p>
+          <div class="chips"><span class="chip">Object detection</span><span class="chip">Multi-object tracking</span></div>
+        </article>
+        <article class="project">
+          <h3>RepoTrim</h3>
+          <p>A Python command line tool on PyPI that picks the relevant files before an AI coding agent starts, cutting token usage by 70 to 90%.</p>
+          <div class="chips"><span class="chip">Python</span><span class="chip">PyPI</span><span class="chip">CLI</span></div>
+        </article>
+        <article class="project">
+          <h3>Davis Purity Test</h3>
+          <p>A shareable web app with dynamic scoring, personalized flows and viral sharing. More than 3,000 people on campus used it within weeks.</p>
+          <div class="chips"><span class="chip">Full-stack</span><span class="chip">3,000+ users</span></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="sec-head">
+        <p class="label">Skills</p>
+        <h2>Tools I reach for</h2>
+      </div>
+      <div class="skills">
+        <div class="skill"><span class="label">Languages</span><p>Python, C++, C, Java, TypeScript, SQL, C#</p></div>
+        <div class="skill"><span class="label">AI and vision</span><p>PyTorch, OpenCV, scikit-learn, ONNX, TensorRT, object detection, multi-object tracking</p></div>
+        <div class="skill"><span class="label">Backend and cloud</span><p>FastAPI, Flask, React, Angular, .NET, Redis, AWS (Elastic Beanstalk, S3, CloudFront)</p></div>
+        <div class="skill"><span class="label">Tools</span><p>Linux, SQL Server, Jira</p></div>
+      </div>
+      <div class="edu">
+        <div>
+          <h3>University of California, Davis</h3>
+          <p>B.S., Computer Science. Coursework in object-oriented programming, data structures and algorithms, and deep learning.</p>
+        </div>
+        <p class="mono">Sep 2024 to Mar 2027</p>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="contact">
+        <p class="label">Contact</p>
+        <h2>Looking for computer vision and edge AI roles starting 2027.</h2>
+        <p>Based in Davis, California. If you're building something that has to run on real hardware, I'd like to hear about it.</p>
+        <div class="email-row">
+          <code id="email">satyakatta11@gmail.com</code>
+          <button class="btn primary" id="copy" type="button">Copy email</button>
+        </div>
+        <div class="links" style="margin-top:0">
+          <a class="btn" href="https://github.com/Sudhakhar-Katta" target="_blank" rel="noopener">github.com/Sudhakhar-Katta</a>
+          <a class="btn" href="https://linkedin.com/in/sudhakhar-katta-77a721232" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>Sudhakhar Katta</span>
+    <span>Davis, CA</span>
+  </footer>
+</div>
+
+<script>
+(function () {
+  var btn = document.getElementById('copy');
+  var el = document.getElementById('email');
+  btn.addEventListener('click', function () {
+    var text = el.textContent;
+    function done() { btn.textContent = 'Copied'; setTimeout(function () { btn.textContent = 'Copy email'; }, 1800); }
+    function fallback() {
+      var r = document.createRange(); r.selectNodeContents(el);
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      btn.textContent = 'Press copy';
+      setTimeout(function () { btn.textContent = 'Copy email'; }, 1800);
+    }
+    try { navigator.clipboard.writeText(text).then(done, fallback); } catch (e) { fallback(); }
+  });
+})();
+</script>
+
+</body>
+</html>
